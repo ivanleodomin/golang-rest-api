@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+
+	"github.com/ivanleodomin/golang-rest-api/routes"
+)
 
 func main() {
-	fmt.Println("Hello, world!")
+	router := mux.NewRouter()
+
+	router.HandleFunc("/", routes.HomeHandler)
+
+	http.ListenAndServe(":3000", router)
 }
